@@ -1,0 +1,55 @@
+section {
+	margin-top: 50px;
+}
+.main {
+	width: 100%;
+	min-height: 60vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #6e59ce;
+	color: #f8f3fc;
+	padding: 1em;
+	text-align: center;
+}
+.main span h2 {
+	color: #34b6b4;
+	font-size: 1.3em;
+	font-weight: 700;
+}
+.content h3 {
+	margin-bottom: 1.5em;
+	margin-top: 1em;
+}
+
+.btn {
+	font-size: 1em;
+	color: #fff;
+	background: #34b6b4;
+	display: inline-block;
+	padding: 10px 20px;
+	margin-top: 15px;
+	text-decoration: none;
+	letter-spacing: 2px;
+	transition: 0.5s;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+}
+.searcBox {
+	display: flex;
+	justify-content: center;
+	margin: 15px;
+}
+.main .content input[type='text'] {
+	width: 31em;
+	outline: none;
+	padding: 8px;
+	height: 2.8em;
+	margin: 0.25em;
+	border: none;
+	font-size: 1em;
+}
+.btn:hover {
+	letter-spacing: 6px;
+}

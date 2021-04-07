@@ -1,0 +1,31 @@
+.form-container {
+	display: flex;
+	flex-direction: column;
+	margin-top: 50px;
+	padding: 100px;
+	justify-content: center;
+	align-items: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 55%;
+}
+.form span {
+	color: mediumvioletred;
+}
+.form input {
+	height: 2.9em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.form h1 {
+	color: #34b6b4;
+}
+#submit {
+	background-color: #34b6b4;
+	color: white;
+	border: none;
+}

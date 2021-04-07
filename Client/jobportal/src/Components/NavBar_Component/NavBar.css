@@ -1,0 +1,36 @@
+header {
+	background-color: #6e59ce;
+	position: fixed;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	padding: 35px 50px;
+	z-index: 10000;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: 0.5%;
+}
+
+header .logo {
+	color: #fff;
+	font-weight: 700;
+	font-size: 2em;
+	text-decoration: none;
+	margin-right: 200px;
+}
+
+header .logo h2 {
+	color: #34b6b4;
+	font-weight: 700;
+}
+header .navigation {
+	display: flex;
+}
+header .navigation li {
+	list-style: none;
+	margin-left: 30px;
+	color: #fff;
+	font-weight: 300;
+}

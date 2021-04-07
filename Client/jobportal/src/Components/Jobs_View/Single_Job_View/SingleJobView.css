@@ -1,0 +1,16 @@
+.job {
+	margin-top: 50px;
+	padding: 50px;
+}
+.job-description {
+	margin-bottom: 3em;
+	margin-top: 3em;
+}
+.job-description p {
+	color: #34b6b4;
+}
+
+h4 {
+	color: blueviolet;
+	margin-top: 1em;
+}
