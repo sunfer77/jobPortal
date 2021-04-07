@@ -1,25 +1,11 @@
 const express = require('express');
 const app = express();
-const session = require('express-session');
 const cors = require('cors');
-
 const db = require('../../db');
 const bcrypt = require('bcrypt');
 
 //app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-
-app.use(
-	session({
-		key: 'cookieId',
-		secret: 'noSecret',
-		resave: false,
-		saveUninitialized: false,
-		cookie: {
-			maxAge: 1000 * 60 * 30,
-		},
-	})
-);
 
 const job_Seeker_login = (req, res) => {
 	const { userName, password } = req.body;
