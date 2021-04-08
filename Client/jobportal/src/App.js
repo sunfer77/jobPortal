@@ -9,6 +9,8 @@ import About from './Components/About_Component/About';
 import ListOfJobs from './Components/Jobs_View/List_Of_Jobs/ListOfJobs';
 import JobSeekerSignup from './Components/Job_Seeker/JobSeeker_SignUp/JobSeekerSignup';
 import UserContext from './Components/Job_Seeker/JobSeeker_Login.js/UserContext';
+import CreateCV from './Components/Job_Seeker/CV/CreateCV';
+import JobSeekerEditProfile from './Components/Job_Seeker/JobSeeker_Edit_Profile/JobSeekerEditProfile';
 
 function App() {
 	return (
@@ -23,6 +25,12 @@ function App() {
 						<Route exact path='/job/:id' component={SingleJobView} />
 						<Route exact path='/JobSeekerSignup' component={JobSeekerSignup} />
 						<Route exact path='/UserContext' component={UserContext} />
+						<Route exact path='/CreateCV' component={CreateCV} />
+						<Route
+							exact
+							path='/JobSeekerEditProfile'
+							component={JobSeekerEditProfile}
+						/>
 					</JobSearchProvider>
 				</Switch>
 			</Router>

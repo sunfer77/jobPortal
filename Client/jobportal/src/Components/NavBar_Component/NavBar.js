@@ -9,14 +9,17 @@ function NavBar() {
 			</Link>
 
 			<ul className='navigation'>
-				<Link to='/'>
-					<li>Home</li>
-				</Link>
 				<Link to='/JobSeekerSignup'>
 					<li>Sign Up</li>
 				</Link>
 				<Link to='/UserContext'>
 					<li>login</li>
+				</Link>
+				<Link to='/CreateCV'>
+					<li>Create CV</li>
+				</Link>
+				<Link to='/JobSeekerEditProfile'>
+					<li>Update CV</li>
 				</Link>
 			</ul>
 		</header>

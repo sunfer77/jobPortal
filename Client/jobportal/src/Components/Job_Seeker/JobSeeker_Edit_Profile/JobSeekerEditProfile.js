@@ -4,12 +4,11 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import '../form.css';
-// Import useContext and send User Id with data.
-function CreateCV() {
-	const userName = 'saman'; //  <------ Delete after checked!
+
+function JobSeekerEditProfile() {
 	const submitForm = (data) => {
 		axios
-			.post('http://localhost:3001/jobSeeker/createCV', { ...data, userName })
+			.post('http://localhost:3001/jobSeeker/createCV', data)
 			.then((response) => {
 				console.log(response);
 			});
@@ -34,7 +33,9 @@ function CreateCV() {
 			.min(2)
 			.matches(/^[A-Za-z\s]+$/, 'Invalid format'),
 		region: yup.string().required().min(2),
-		aboutMe: yup.string().required().min(10).max(5000),
+		careerLevel: yup.string().required().min(2),
+		educationlevel: yup.string().required().min(2),
+		cv: yup.string().required().min(10).max(5000),
 	});
 
 	const { register, handleSubmit, errors } = useForm({
@@ -45,7 +46,7 @@ function CreateCV() {
 	return (
 		<div className='form-container'>
 			<form className='form' onSubmit={handleSubmit(submitForm)}>
-				<h1>Create Your CV </h1>
+				<h1>Update your CV </h1>
 				{/*+++++++++First Name  +++++++++++++++++++++++++++++++++++++++++++++*/}
 
 				<input
@@ -85,11 +86,36 @@ function CreateCV() {
 					<span>This fiels is required!</span>
 				)}
 
+				{/*+++++++++++++++++++++++++ UserName  +++++++++++++++++++++++++++++*/}
+
+				<input
+					type='text'
+					name='careerLevel'
+					ref={register}
+					placeholder='Career Level*'
+				/>
+				{errors.careerLevel?.type === 'required' && (
+					<span>This fiels is required!</span>
+				)}
+				{errors.careerLevel?.type === 'min' && <span>Too Short!</span>}
+
+				{/*++++++++++++++++++++++++++ Education Level  ++++++++++++++++++++++++++++++*/}
+
+				<input
+					name='educationlevel'
+					ref={register}
+					placeholder='Education Level *'
+				/>
+				{errors.educationlevel?.type === 'required' && (
+					<span>This fiels is required!</span>
+				)}
+				{errors.educationlevel?.type === 'min' && <p>Too Short!</p>}
+
 				{/*+++++++++++++++++++++++++ About You  ++++++++++++++++++++++++++++++++++++++++++*/}
 
 				<textarea
 					className='text'
-					name='aboutMe'
+					name='cv'
 					ref={register}
 					placeholder='About you *'
 				/>
@@ -100,4 +126,5 @@ function CreateCV() {
 		</div>
 	);
 }
-export default CreateCV;
+
+export default JobSeekerEditProfile;
