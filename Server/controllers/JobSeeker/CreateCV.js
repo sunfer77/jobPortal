@@ -15,7 +15,7 @@ const Create_CV = (req, res) => {
 				if (err) {
 					throw err;
 				} else {
-					res.send({ message: 'Profile Created' });
+					res.send({ message: 'Congratulation Your Profile Created' });
 				}
 			} catch (error) {
 				if (error.errno == 1062) {

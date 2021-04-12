@@ -2,7 +2,6 @@ const db = require('../../db');
 
 const getUserData = (req, res) => {
 	const { id } = req.params;
-	console.log(id);
 	const userData = `SELECT * FROM JobSeekerProfile WHERE id = ?;`;
 	try {
 		db.query(userData, id, (err, result) => {
