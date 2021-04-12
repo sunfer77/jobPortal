@@ -25,11 +25,6 @@ function JobSearchProvider(props) {
 			});
 	};
 
-	//  Retrieving data from LocalStorageand and saving.
-	// useEffect(() => {
-	// 	setjobList(JSON.parse(localStorage.getItem('listOfJob')));
-	// }, []);
-
 	return (
 		<userContext.Provider
 			value={{ findJobs, jobList, fireRedirect, setfireRedirect, isLoading }}>
