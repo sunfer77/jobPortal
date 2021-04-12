@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+//import { withRouter } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import '../form.css';
-// Import useContext and send User Id with data.
+import { CandidateContext } from '../JobSeeker_Login/UserContext';
+
 function CreateCV() {
-	const userName = 'saman'; //  <------ Delete after checked!
+	const { userData } = useContext(CandidateContext);
 	const submitForm = (data) => {
 		axios
-			.post('http://localhost:3001/jobSeeker/createCV', { ...data, userName })
+			.post('http://localhost:3001/jobSeeker/createCV', {
+				...data,
+				id: userData.id,
+			})
 			.then((response) => {
 				console.log(response);
 			});
@@ -100,4 +105,5 @@ function CreateCV() {
 		</div>
 	);
 }
+//export default withRouter(CreateCV);
 export default CreateCV;

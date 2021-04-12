@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
+import { CandidateContext } from '../Job_Seeker/JobSeeker_Login/UserContext';
 function NavBar() {
+	const { userData } = useContext(CandidateContext);
 	return (
 		<header>
 			<Link className='logo' to='/'>
@@ -9,18 +11,39 @@ function NavBar() {
 			</Link>
 
 			<ul className='navigation'>
-				<Link to='/JobSeekerSignup'>
-					<li>Sign Up</li>
-				</Link>
-				<Link to='/UserContext'>
-					<li>login</li>
-				</Link>
-				<Link to='/CreateCV'>
-					<li>Create CV</li>
-				</Link>
-				<Link to='/JobSeekerEditProfile'>
-					<li>Update CV</li>
-				</Link>
+				{userData.isAuthenticated ? null : (
+					<Link to='/JobSeekerSignup'>
+						<li>Sign Up</li>
+					</Link>
+				)}
+
+				{userData.isAuthenticated ? null : (
+					<Link to='/JobSeekerLogin'>
+						<li>login</li>
+					</Link>
+				)}
+
+				{userData.isAuthenticated ? (
+					<Link to='/CreateCV'>
+						<li>Create CV</li>
+					</Link>
+				) : null}
+
+				{userData.isAuthenticated ? (
+					<Link to='/JobSeekerEditProfile'>
+						<li>Update CV</li>
+					</Link>
+				) : null}
+				{userData.isAuthenticated ? (
+					<Link to='/JobSeekerEditProfile'>
+						<li>Profile</li>
+					</Link>
+				) : null}
+				{userData.isAuthenticated ? (
+					<Link to='/JobSeekerEditProfile'>
+						<li>Logout</li>
+					</Link>
+				) : null}
 			</ul>
 		</header>
 	);

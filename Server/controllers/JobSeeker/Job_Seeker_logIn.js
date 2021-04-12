@@ -1,11 +1,5 @@
-const express = require('express');
-const app = express();
-const cors = require('cors');
 const db = require('../../db');
 const bcrypt = require('bcrypt');
-
-//app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 
 const job_Seeker_login = (req, res) => {
 	const { userName, password } = req.body;

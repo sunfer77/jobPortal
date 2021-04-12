@@ -1,16 +1,15 @@
 const db = require('../../db');
 
 const Create_CV = (req, res) => {
-	const { userName, firstName, lastName, city, region, aboutMe } = req.body;
-	console.log(req.body);
+	const { id, firstName, lastName, city, region, aboutMe } = req.body;
 
 	const CVData = `INSERT INTO JobSeekerProfile
-                    (userName,firstName,lastName,city,region,aboutMe) 
+                    (id,firstName,lastName,city,region,aboutMe) 
                     VALUES (?,?,?,?,?,?);`;
 
 	db.query(
 		CVData,
-		[userName, firstName, lastName, city, region, aboutMe],
+		[id, firstName, lastName, city, region, aboutMe],
 		(err, result) => {
 			try {
 				if (err) {
@@ -19,8 +18,9 @@ const Create_CV = (req, res) => {
 					res.send({ message: 'Profile Created' });
 				}
 			} catch (error) {
-				res.send(error.messge);
-				console.log(error);
+				if (error.errno == 1062) {
+					res.send('You already have created your CV');
+				}
 			}
 		}
 	);

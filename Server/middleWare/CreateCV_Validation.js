@@ -1,7 +1,6 @@
 const yup = require('yup');
 
 const schema = yup.object().shape({
-	userName: yup.string().required().min(2),
 	firstName: yup
 		.string()
 		.required()

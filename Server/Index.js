@@ -9,9 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/jobSeeker', job_Seeker_Routes); // <------ JobSeeker routes
-
 app.use('/jobs', job_Routes); //  <------job routes
-
 //app.use('/company', employer_Routes); // <------ company routes
 
 app.listen(3001, () => {

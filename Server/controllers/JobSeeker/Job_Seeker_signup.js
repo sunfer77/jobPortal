@@ -7,12 +7,10 @@ const job_Seeker_signUp = async (req, res) => {
 	const { userName, email, password } = req.body;
 	console.log(req.body);
 
-	const userSignUp = `INSERT INTO UserRegistration (
-		userName, 
-		email , 
-		password) VALUES (?,?,?);`;
+	const userSignUp = `INSERT INTO UserRegistration 
+						(userName, email, password)  
+						VALUES (?,?,?);`;
 
-	// bycrypt start here
 	await bcrypt.hash(password, saltRound, (err, hash) => {
 		if (err) {
 			throw new Error('Something went wrong!');
