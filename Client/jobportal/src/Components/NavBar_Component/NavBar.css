@@ -34,3 +34,11 @@ header .navigation li {
 	color: #fff;
 	font-weight: 300;
 }
+.navigation span {
+	color: #34b6b4;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+.navigation Link {
+	text-decoration: none;
+}
