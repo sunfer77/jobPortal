@@ -15,7 +15,10 @@ const Create_CV = (req, res) => {
 				if (err) {
 					throw err;
 				} else {
-					res.send({ message: 'Congratulation Your Profile Created' });
+					req.session.cv = result;
+					res.send({
+						message: 'Congratulation! Your CV is Created!',
+					});
 				}
 			} catch (error) {
 				if (error.errno == 1062) {
