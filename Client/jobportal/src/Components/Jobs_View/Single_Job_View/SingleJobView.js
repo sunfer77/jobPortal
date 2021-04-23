@@ -11,10 +11,7 @@ function SingleJobView() {
 		axios
 			.get(`http://localhost:3001/jobs/${id}`)
 			.then((response) => {
-				//localStorage.setItem('singleJob', JSON.stringify(response.data[0]));
-				//setJob(JSON.parse(localStorage.getItem('singleJob')));
 				setJob(response.data[0]);
-				console.log(response.data[0]);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -29,7 +26,7 @@ function SingleJobView() {
 				<p>{job.city}</p>
 			</div>
 			<p>{job.jobDescription}</p>
-			<h4>Send your CV to {job.email}</h4>
+			<h4>Please send your CV to {job.email}</h4>
 		</div>
 	);
 }

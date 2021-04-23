@@ -12,18 +12,19 @@ function JobSeekerEditProfile() {
 	const [JobSeekerData, setJobSeekerData] = useState([]);
 	const [message, setMessage] = useState([]);
 
+	// Gettind user data from database for editing!
 	useEffect(() => {
 		axios
 			.get(`http://localhost:3001/jobSeeker/${userData.id}`)
 			.then((response) => {
-				setJobSeekerData(response.data[0]);
-				console.log(response.data[0]);
+				setJobSeekerData(response.data);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, [userData.id]);
 
+	// Submit updated user data to the database
 	const submitForm = (data) => {
 		axios
 			.put('http://localhost:3001/jobSeeker/updateCV', {
@@ -78,9 +79,7 @@ function JobSeekerEditProfile() {
 					ref={register}
 					placeholder='First Name *'
 				/>
-				{errors.firstName?.type === 'required' && (
-					<span>This fiels is required!</span>
-				)}
+				{errors.firstName?.type === 'required' && <span>Required</span>}
 				{errors.firstName?.type === 'min' && (
 					<span>Please minLength is 2 </span>
 				)}
@@ -94,9 +93,7 @@ function JobSeekerEditProfile() {
 					ref={register}
 					placeholder='Last Name *'
 				/>
-				{errors.lastName?.type === 'required' && (
-					<span>Last name is required!</span>
-				)}
+				{errors.lastName?.type === 'required' && <span>Required</span>}
 				{errors.lastName?.type === 'min' && <span>Last name is too short</span>}
 				{errors.lastName?.type === 'matches' && <span>invalid format</span>}
 
@@ -108,7 +105,7 @@ function JobSeekerEditProfile() {
 					ref={register}
 					placeholder='City *'
 				/>
-				{errors.city?.type === 'required' && <span>City is required!</span>}
+				{errors.city?.type === 'required' && <span>Required</span>}
 				{errors.city?.type === 'min' && <span> too short</span>}
 				{errors.city?.type === 'matches' && <span>invalid format</span>}
 
@@ -120,9 +117,7 @@ function JobSeekerEditProfile() {
 					ref={register}
 					placeholder='Region *'
 				/>
-				{errors.region?.type === 'required' && (
-					<span>This fiels is required!</span>
-				)}
+				{errors.region?.type === 'required' && <span>Required</span>}
 
 				{/*+++++++++++++++++++++++++ About You  ++++++++++++++++++++++++++++++++++++++++++*/}
 
@@ -133,8 +128,8 @@ function JobSeekerEditProfile() {
 					ref={register}
 					placeholder='About you *'
 				/>
-				{errors.cv?.type === 'required' && <span>This fiels is required!</span>}
-				{errors.cv?.type === 'min' && <span>Too Short!</span>}
+				{errors.aboutMe?.type === 'required' && <span>Required</span>}
+				{errors.aboutMe?.type === 'min' && <span>Too Short!</span>}
 				<input id='submit' type='submit' />
 				<span>{message}</span>
 			</form>

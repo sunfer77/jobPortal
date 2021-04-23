@@ -23,15 +23,12 @@ function App() {
 			<Router>
 				<UserContext>
 					<NavBar />
-
 					<Switch>
 						<JobSearchProvider>
-							{/* <UserContext> */}
 							<Route exact path='/' component={JobSearch} />
 							<Route exact path='/About' component={About} />
 							<Route exact path='/ListOfJobs' component={ListOfJobs} />
 							<Route exact path='/job/:id' component={SingleJobView} />
-
 							<Route
 								exact
 								path='/JobSeekerSignup'

@@ -20,12 +20,13 @@ const job_search_controller = (req, res) => {
 	// main job search
 	db.query(jobSearch, (err, result) => {
 		try {
-			if (result.length > 0) {
+			if (err) {
+				throw err;
+			} else if (result.length > 0) {
 				res.status(200).json(result);
 				console.log(result);
 			} else {
-				res.send(`Sorry no jobs found regarding '${jobName}'`);
-				console.log(err);
+				res.send({ NojobsFound: true, jobName: jobName });
 			}
 		} catch (error) {
 			res.send(error);
@@ -33,7 +34,7 @@ const job_search_controller = (req, res) => {
 	});
 };
 
-// search job by id
+// get selected job by id
 const jobs_by_id = (req, res) => {
 	const { id } = req.params;
 

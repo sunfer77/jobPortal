@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -12,9 +13,8 @@ function JobSeekerLogin() {
 		userName: yup
 			.string()
 			.required()
-			.min(2)
 			.matches(/^[A-Za-z\s]+$/, 'Invalid format'),
-		password: yup.string().required().min(8),
+		password: yup.string().required(),
 	});
 
 	const { register, handleSubmit, errors } = useForm({
@@ -44,8 +44,17 @@ function JobSeekerLogin() {
 				{errors.password?.type === 'required' && <span>Required!</span>}
 				{errors.password?.type === 'min' && <span>too short</span>}
 				<input id='submit' type='submit' />
-				<span>{userData.userName}</span>
+				<span>{userData.message}</span>
 			</form>
+
+			{/* Redirect User to the Homepage after logged in */}
+			{userData.isAuthenticated && (
+				<Redirect
+					to={{
+						pathname: '/',
+					}}
+				/>
+			)}
 		</div>
 	);
 }

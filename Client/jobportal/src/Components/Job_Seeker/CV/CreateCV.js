@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
-//import { withRouter } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
-import '../form.css';
 import { CandidateContext } from '../JobSeeker_Login/UserContext';
+
+import '../form.css';
 
 function CreateCV() {
 	const { userData } = useContext(CandidateContext);
+
 	const submitForm = (data) => {
 		axios
 			.post('http://localhost:3001/jobSeeker/createCV', {
@@ -59,9 +60,7 @@ function CreateCV() {
 					ref={register}
 					placeholder='First Name *'
 				/>
-				{errors.firstName?.type === 'required' && (
-					<span>This fiels is required!</span>
-				)}
+				{errors.firstName?.type === 'required' && <span>Required</span>}
 				{errors.firstName?.type === 'min' && (
 					<span>Please minLength is 2 </span>
 				)}
@@ -69,28 +68,34 @@ function CreateCV() {
 
 				{/*+++++++++ Last Name +++++++++++++++++++++++++++++++++++++++++++++*/}
 
-				<input name='lastName' ref={register} placeholder='Last Name *' />
-				{errors.lastName?.type === 'required' && (
-					<span>Last name is required!</span>
-				)}
+				<input
+					type='text'
+					name='lastName'
+					ref={register}
+					placeholder='Last Name *'
+				/>
+				{errors.lastName?.type === 'required' && <span>Required</span>}
 				{errors.lastName?.type === 'min' && <span>Last name is too short</span>}
 				{errors.lastName?.type === 'matches' && <span>invalid format</span>}
 
 				{/* +++++++++ City +++++++++++++++++++++++++++++++++++++++++++++ */}
 
-				<input name='city' ref={register} placeholder='City *' />
-				{errors.city?.type === 'required' && <span>City is required!</span>}
+				<input type='text' name='city' ref={register} placeholder='City *' />
+				{errors.city?.type === 'required' && <span>Required</span>}
 				{errors.city?.type === 'min' && <span> too short</span>}
 				{errors.city?.type === 'matches' && <span>invalid format</span>}
 
-				{/*++++++++++++++++++++++++++ E-mail  ++++++++++++++++++++++++++++++*/}
+				{/*++++++++++++++++++++++++++ region  ++++++++++++++++++++++++++++++*/}
 
-				<input name='region' ref={register} placeholder='Region *' />
-				{errors.region?.type === 'required' && (
-					<span>This fiels is required!</span>
-				)}
+				<input
+					type='text'
+					name='region'
+					ref={register}
+					placeholder='Region *'
+				/>
+				{errors.region?.type === 'required' && <span>Required</span>}
 
-				{/*+++++++++++++++++++++++++ About You  ++++++++++++++++++++++++++++++++++++++++++*/}
+				{/*+++++++++++++++++++++++++ About Me ++++++++++++++++++++++++++++++++++++++++++*/}
 
 				<textarea
 					className='text'
@@ -98,12 +103,12 @@ function CreateCV() {
 					ref={register}
 					placeholder='About you *'
 				/>
-				{errors.cv?.type === 'required' && <span>This fiels is required!</span>}
+				{errors.cv?.type === 'required' && <span>Required</span>}
 				{errors.cv?.type === 'min' && <span>Too Short!</span>}
 				<input id='submit' type='submit' />
 			</form>
 		</div>
 	);
 }
-//export default withRouter(CreateCV);
+
 export default CreateCV;

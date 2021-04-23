@@ -9,16 +9,17 @@ function ListOfJobs() {
 	useEffect(() => {
 		setfireRedirect(false);
 	});
+
 	return isLoading ? (
 		<h3>Loading....</h3>
 	) : (
 		<div className='Listcontaier'>
-			{jobList.includes('Sorry no jobs found regarding') ? (
-				<h3>{jobList}</h3>
+			{jobList.NojobsFound ? (
+				<h3>No Jobs found regarding {jobList.jobName}</h3>
 			) : (
-				jobList.map((job) => {
+				jobList.reverse().map((job) => {
 					return (
-						<Link to={`job/${job.jobId}`}>
+						<Link style={{ textDecoration: 'none' }} to={`job/${job.jobId}`}>
 							<div key={job.jobId} className='coleft'>
 								<h3>{job.jobName}</h3>
 								<p>

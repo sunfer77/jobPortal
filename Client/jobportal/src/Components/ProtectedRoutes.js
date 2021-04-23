@@ -4,6 +4,7 @@ import { CandidateContext } from './Job_Seeker/JobSeeker_Login/UserContext';
 
 function ProtectedRoutes({ component: Component, ...rest }) {
 	const { userData } = useContext(CandidateContext);
+
 	return (
 		<Route
 			{...rest}

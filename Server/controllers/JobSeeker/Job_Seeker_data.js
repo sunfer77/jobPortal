@@ -8,7 +8,12 @@ const getUserData = (req, res) => {
 			if (err) {
 				throw err;
 			} else {
-				res.send(result);
+				if (result.length > 0) {
+					// added CvCreated object instance to use in NaveBar component to chech wether the current user has created cv
+					res.send({ ...result[0], CvCreated: true });
+				} else {
+					res.send({ CvCreated: false });
+				}
 			}
 		});
 	} catch (error) {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -6,14 +7,14 @@ import axios from 'axios';
 import '../form.css';
 
 function JobseekerSignUp() {
-	const [message, setMessage] = useState([]);
+	const [signUpData, setsignUpData] = useState([]);
 
 	const submitForm = (data) => {
 		axios
 			.post('http://localhost:3001/jobSeeker/sign_up', data)
 			.then((response) => {
 				console.log(response.data);
-				setMessage(response.data);
+				setsignUpData(response.data);
 			})
 			.catch((err) => {
 				console.log(err.message);
@@ -21,11 +22,7 @@ function JobseekerSignUp() {
 	};
 
 	const schema = yup.object().shape({
-		userName: yup
-			.string()
-			.required()
-			.min(2)
-			.matches(/^[A-Za-z\s]+$/, 'Invalid format'),
+		userName: yup.string().required().min(2),
 		email: yup.string().email().required(),
 		password: yup.string().required().min(8),
 	});
@@ -45,7 +42,6 @@ function JobseekerSignUp() {
 				<input name='userName' ref={register} placeholder='user name*' />
 				{errors.userName?.type === 'required' && <span>Required!</span>}
 				{errors.userName?.type === 'min' && <span>too short</span>}
-				{errors.userName?.type === 'matches' && <span>invalid format</span>}
 
 				{/* +++++++++ City +++++++++++++++++++++++++++++++++++++++++++++ */}
 
@@ -65,8 +61,16 @@ function JobseekerSignUp() {
 				{errors.password?.type === 'required' && <span>Required!</span>}
 				{errors.password?.type === 'min' && <span>too short</span>}
 				<input id='submit' type='submit' />
-				<span>{message}</span>
+				<span>{signUpData.message}</span>
 			</form>
+
+			{signUpData.isRegistered && (
+				<Redirect
+					to={{
+						pathname: '/JobSeekerLogin',
+					}}
+				/>
+			)}
 		</div>
 	);
 }

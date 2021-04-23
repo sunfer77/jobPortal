@@ -5,7 +5,6 @@ const saltRound = 10;
 
 const job_Seeker_signUp = async (req, res) => {
 	const { userName, email, password } = req.body;
-	console.log(req.body);
 
 	const userSignUp = `INSERT INTO UserRegistration 
 						(userName, email, password)  
@@ -21,13 +20,13 @@ const job_Seeker_signUp = async (req, res) => {
 				if (err) {
 					throw err;
 				} else {
-					result.serverStatus == 2 && res.send('Registration suscessful!');
+					res.send({ message: 'Registration suscessful!', isRegistered: true });
 				}
 			} catch (error) {
-				console.log(error);
+				console.log(error.message);
 				error.sqlMessage.includes('userName')
-					? res.send('username already taken')
-					: res.send('e-mail already exists');
+					? res.send({ message: 'username already taken' })
+					: res.send({ message: 'e-mail already exists' });
 			}
 		});
 	});
