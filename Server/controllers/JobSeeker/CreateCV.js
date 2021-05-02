@@ -15,14 +15,18 @@ const Create_CV = (req, res) => {
 				if (err) {
 					throw err;
 				} else {
-					req.session.cv = result;
-					res.send({
-						message: 'Congratulation! Your CV is Created!',
-					});
+					result.legnth > 0 &&
+						res.send({
+							message: 'Congratulation! Your CV is Created!',
+							cvCreated: true,
+						});
 				}
 			} catch (error) {
 				if (error.errno == 1062) {
-					res.send('You already have created your CV');
+					res.send({
+						message: 'You already have created your CV',
+						cvCreated: false,
+					});
 				}
 			}
 		}

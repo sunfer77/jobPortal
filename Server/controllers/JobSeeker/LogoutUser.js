@@ -1,7 +1,7 @@
 const db = require('../../db');
 
-const getUserData = (req, res) => {
-	const { id } = req.params;
+const UserData = (req, res) => {
+	const id = 85;
 	const userData = `SELECT * FROM JobSeekerProfile WHERE id = ?;`;
 	try {
 		db.query(userData, id, (err, result) => {
@@ -11,7 +11,7 @@ const getUserData = (req, res) => {
 				if (result.length > 0) {
 					res.send({ ...result[0], CvCreated: true });
 				} else {
-					res.send({ CvCreated: false });
+					res.send('noUser');
 				}
 			}
 		});
@@ -20,4 +20,4 @@ const getUserData = (req, res) => {
 	}
 };
 
-module.exports = getUserData;
+module.exports = UserData;

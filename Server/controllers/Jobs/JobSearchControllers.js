@@ -24,7 +24,6 @@ const job_search_controller = (req, res) => {
 				throw err;
 			} else if (result.length > 0) {
 				res.status(200).json(result);
-				console.log(result);
 			} else {
 				res.send({ NojobsFound: true, jobName: jobName });
 			}

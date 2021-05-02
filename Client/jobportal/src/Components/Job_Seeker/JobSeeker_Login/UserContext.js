@@ -14,24 +14,26 @@ function UserContext({ children }) {
 			.post('http://localhost:3001/jobSeeker/login', data)
 			.then((response) => {
 				setUserData(response.data);
-				console.log(response.data);
 			})
 			.catch((err) => {
 				console.log(err.message);
 			});
 	};
-
-	useEffect(() => {
-		axios
-			.get('http://localhost:3001/jobSeeker/login')
-			.then((response) => {
-				setUserData(response.data);
-				console.log(response.data);
-			})
-			.catch((err) => {
-				console.log(err.message);
-			});
-	}, []);
+	// Get User information from back end if user successfully logged in.
+	try {
+		useEffect(() => {
+			axios
+				.get('http://localhost:3001/jobSeeker/login')
+				.then((response) => {
+					setUserData(response.data);
+				})
+				.catch((err) => {
+					console.log(err.message);
+				});
+		}, []);
+	} catch (error) {
+		console.log(error);
+	}
 
 	return (
 		<CandidateContext.Provider value={{ submitForm, userData }}>

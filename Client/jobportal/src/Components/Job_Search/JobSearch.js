@@ -24,9 +24,7 @@ function JobSearch() {
 		<>
 			<section className='main'>
 				<div className='content'>
-					<h2>
-						<span>W</span>e help you find your Dream Job!
-					</h2>
+					<h2>We help you find your Dream Job!</h2>
 					<h3>
 						Introducing video job descriptions. Only at Monster. Get insights
 						into real jobs with video job descriptions from hiring managers.

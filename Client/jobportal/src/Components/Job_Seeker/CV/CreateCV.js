@@ -1,27 +1,14 @@
 import React, { useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios from 'axios';
-import { CandidateContext } from '../JobSeeker_Login/UserContext';
+import { CvContext } from './CreateCVProvider';
 
 import '../form.css';
 
 function CreateCV() {
-	const { userData } = useContext(CandidateContext);
-
-	const submitForm = (data) => {
-		axios
-			.post('http://localhost:3001/jobSeeker/createCV', {
-				...data,
-				id: userData.id,
-			})
-			.then((response) => {
-				console.log(response);
-			});
-		console.log(data);
-	};
-
+	const { submitForm, cvCreated } = useContext(CvContext);
 	// * Yup Form starts here
 	const schema = yup.object().shape({
 		firstName: yup
@@ -51,7 +38,8 @@ function CreateCV() {
 	return (
 		<div className='form-container'>
 			<form className='form' onSubmit={handleSubmit(submitForm)}>
-				<h1>Create Your CV </h1>
+				<h2>Create Your CV </h2>
+
 				{/*+++++++++First Name  +++++++++++++++++++++++++++++++++++++++++++++*/}
 
 				<input
@@ -99,14 +87,25 @@ function CreateCV() {
 
 				<textarea
 					className='text'
+					wrap='off'
+					cols='30'
+					rows='20'
 					name='aboutMe'
 					ref={register}
-					placeholder='About you *'
+					placeholder='Please do not forget add your education, experience and skills ;)'
 				/>
 				{errors.cv?.type === 'required' && <span>Required</span>}
 				{errors.cv?.type === 'min' && <span>Too Short!</span>}
 				<input id='submit' type='submit' />
+				<span>{cvCreated.message}</span>
 			</form>
+			{cvCreated.cvCreated && (
+				<Redirect
+					to={{
+						pathname: '/',
+					}}
+				/>
+			)}
 		</div>
 	);
 }

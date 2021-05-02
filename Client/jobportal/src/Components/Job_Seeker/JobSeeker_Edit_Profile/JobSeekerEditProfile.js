@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-//import { withRouter } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,20 +9,25 @@ import '../form.css';
 
 function JobSeekerEditProfile() {
 	const { userData } = useContext(CandidateContext);
+
 	const [JobSeekerData, setJobSeekerData] = useState([]);
 	const [message, setMessage] = useState([]);
 
 	// Gettind user data from database for editing!
-	useEffect(() => {
-		axios
-			.get(`http://localhost:3001/jobSeeker/${userData.id}`)
-			.then((response) => {
-				setJobSeekerData(response.data);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}, [userData.id]);
+	try {
+		useEffect(() => {
+			axios
+				.get(`http://localhost:3001/jobSeeker/${userData.id}`)
+				.then((response) => {
+					setJobSeekerData(response.data);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}, [userData.id]);
+	} catch (error) {
+		console.log(error);
+	}
 
 	// Submit updated user data to the database
 	const submitForm = (data) => {
@@ -32,8 +37,8 @@ function JobSeekerEditProfile() {
 				id: userData.id,
 			})
 			.then((response) => {
-				setMessage(response.data.message);
-				console.log(response.data.message);
+				setMessage(response.data);
+				console.log(message);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -69,7 +74,7 @@ function JobSeekerEditProfile() {
 	return (
 		<div className='form-container'>
 			<form className='form' onSubmit={handleSubmit(submitForm)}>
-				<h1> UpDate Your Profile </h1>
+				<h2> Update Your Profile </h2>
 				{/*+++++++++First Name  +++++++++++++++++++++++++++++++++++++++++++++*/}
 
 				<input
@@ -123,6 +128,8 @@ function JobSeekerEditProfile() {
 
 				<textarea
 					className='text'
+					wrap='off'
+					rows='20'
 					name='aboutMe'
 					defaultValue={JobSeekerData.aboutMe}
 					ref={register}

@@ -7,9 +7,7 @@ function About() {
 		<section>
 			<div className='row'>
 				<div className='left'>
-					<h1 className='titleText'>
-						<span>A</span>bout Us
-					</h1>
+					<h1 className='titleText'>About Us</h1>
 					<p>
 						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil
 						alias labore quos sapiente sed, commodi est! Asperiores, minima

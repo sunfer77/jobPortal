@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	margin-top: 50px;
-	padding: 100px;
+	padding: 70px;
 	justify-content: center;
 	align-items: center;
 }
@@ -11,6 +11,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 55%;
+	font-family: Poppins;
 }
 .form span {
 	color: mediumvioletred;
@@ -19,13 +20,24 @@
 	height: 2.9em;
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
+	padding: 15px;
+	font-family: Poppins;
 }
 
-.form h1 {
+.form h2 {
 	color: #34b6b4;
 }
 #submit {
 	background-color: #34b6b4;
 	color: white;
 	border: none;
+}
+
+.form textarea {
+	resize: none;
+	padding: 15px 15px;
+	font-family: Poppins;
+	border-radius: 5px;
+	border: 1px solid #cccccc;
+	overflow: hidden;
 }

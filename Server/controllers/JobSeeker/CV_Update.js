@@ -2,7 +2,7 @@ const db = require('../../db');
 
 const CV_Update = (req, res) => {
 	const { firstName, lastName, city, region, aboutMe, id } = req.body;
-	console.log(req.body);
+
 	const updatedData = `UPDATE JobSeekerProfile 
                          SET  firstName = ?, lastName = ?, city = ?, region = ?, aboutMe = ? 
                          WHERE id = ?;`;
@@ -15,12 +15,11 @@ const CV_Update = (req, res) => {
 				if (err) {
 					throw err;
 				} else {
-					res.send({ message: `Your Profile Updated!` });
-					console.log(result);
+					res.send('Your Profile Updated!');
 				}
 			} catch (error) {
 				res.send(error.messge);
-				console.log(error);
+				console.log(error.messge);
 			}
 		}
 	);

@@ -7,25 +7,29 @@ function SingleJobView() {
 	const { id } = useParams();
 	let [job, setJob] = useState({});
 
-	useEffect(() => {
-		axios
-			.get(`http://localhost:3001/jobs/${id}`)
-			.then((response) => {
-				setJob(response.data[0]);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, [id]);
+	try {
+		useEffect(() => {
+			axios
+				.get(`http://localhost:3001/jobs/${id}`)
+				.then((response) => {
+					setJob(response.data[0]);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}, [id]);
+	} catch (error) {
+		console.log(error);
+	}
 
 	return (
 		<div className='job'>
 			<div className='job-description'>
-				<h2>{job.jobName}</h2>
+				<h3>{job.jobName}</h3>
 				<p>{job.companyName}</p>
 				<p>{job.city}</p>
 			</div>
-			<p>{job.jobDescription}</p>
+			<p className='description'>{job.jobDescription}</p>
 			<h4>Please send your CV to {job.email}</h4>
 		</div>
 	);

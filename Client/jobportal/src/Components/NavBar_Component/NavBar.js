@@ -1,25 +1,26 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CandidateContext } from '../Job_Seeker/JobSeeker_Login/UserContext';
 import axios from 'axios';
-
 import './NavBar.css';
 
 function NavBar() {
 	const { userData } = useContext(CandidateContext);
-	const [isCvCreated, setIsCvCreated] = useState([]);
 
-	useEffect(() => {
-		userData.isAuthenticated &&
+	const logout = () => {
+		try {
 			axios
-				.get(`http://localhost:3001/jobSeeker/${userData.id}`)
-				.then((response) => {
-					setIsCvCreated(response.data);
+				.get('http://localhost:3001/jobSeeker/logout')
+				.then(() => {
+					window.location.assign('/');
 				})
-				.catch((err) => {
-					console.log(err);
+				.catch((error) => {
+					console.log(error);
 				});
-	}, [userData.id, userData.isAuthenticated]);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<header>
@@ -27,33 +28,28 @@ function NavBar() {
 				<h2>M</h2>
 			</Link>
 			<ul className='navigation'>
+				{/* Display if User is NOT logged in */}
 				{userData.isAuthenticated ? null : (
-					<Link style={{ textDecoration: 'none' }} to='/JobSeekerSignup'>
-						<li>Sign Up</li>
-					</Link>
+					<>
+						<Link style={{ textDecoration: 'none' }} to='/JobSeekerSignup'>
+							<li>Sign Up</li>
+						</Link>
+						<Link style={{ textDecoration: 'none' }} to='/JobSeekerLogin'>
+							<li>login</li>
+						</Link>
+					</>
 				)}
-
-				{userData.isAuthenticated ? null : (
-					<Link style={{ textDecoration: 'none' }} to='/JobSeekerLogin'>
-						<li>login</li>
-					</Link>
-				)}
-
-				{userData.isAuthenticated && !isCvCreated.CvCreated ? (
-					<Link style={{ textDecoration: 'none' }} to='/CreateCV'>
-						<li>Create CV</li>
-					</Link>
-				) : null}
-
-				{userData.isAuthenticated && isCvCreated.CvCreated ? (
-					<Link style={{ textDecoration: 'none' }} to='/JobSeekerEditProfile'>
-						<li>Update CV</li>
-					</Link>
-				) : null}
+				{/* Display if User IS logged in */}
 				{userData.isAuthenticated ? (
-					<li>
-						<span>Hello! {userData.userName}</span>
-					</li>
+					<>
+						<Link style={{ textDecoration: 'none' }} to='/ProfilePage'>
+							<li>
+								<span>Hello! {userData.userName}</span>
+								<i className='fas fa-user-circle'></i>
+							</li>
+						</Link>
+						<li onClick={logout}>Logout</li>
+					</>
 				) : null}
 			</ul>
 		</header>

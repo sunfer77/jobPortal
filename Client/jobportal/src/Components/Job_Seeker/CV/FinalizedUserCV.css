@@ -1,0 +1,23 @@
+.main_div {
+	display: flex;
+	margin-top: 50px;
+	padding: 100px;
+	justify-content: center;
+}
+.cv {
+	width: 70vw;
+	padding: 3em;
+	box-shadow: 1px 5px 7px 5px #f3f3f3;
+	border-radius: 10px;
+}
+
+span {
+	color: #34b6b4;
+}
+.aboutMe {
+	white-space: pre-wrap;
+	margin-top: 0.9em;
+	margin-bottom: 0.9em;
+	border-top: solid 0.5px darkgrey;
+	padding-top: 0.9em;
+}

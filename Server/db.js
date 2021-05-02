@@ -1,11 +1,10 @@
 const mysql = require('mysql');
-require('dotenv').config();
 
-const db = mysql.createPool({
-	host: 'localhost',
-	user: 'root',
-	password: 'root',
-	database: 'jobPortal',
+const db = mysql.createConnection({
+	host: 'www.db4free.net',
+	user: 'suneth_fernando',
+	password: 'jobportal',
+	database: 'myjobportal',
 });
 
 module.exports = db;

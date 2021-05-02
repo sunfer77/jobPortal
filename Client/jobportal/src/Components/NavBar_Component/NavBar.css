@@ -42,3 +42,10 @@ header .navigation li {
 .navigation Link {
 	text-decoration: none;
 }
+li {
+	cursor: pointer;
+}
+li i {
+	color: #d8dae6;
+	margin-left: 0.5em;
+}

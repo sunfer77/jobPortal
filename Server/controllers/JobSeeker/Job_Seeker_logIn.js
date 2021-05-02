@@ -43,16 +43,20 @@ const job_Seeker_login = (req, res) => {
 
 // sending user data from database after user successfully logged-in.
 const job_seeker_session = (req, res) => {
-	if (req.session.user) {
-		res.send({
-			isAuthenticated: true,
-			id: req.session.user[0].id,
-			userName: req.session.user[0].userName,
-		});
-	} else {
-		res.send({
-			isAuthenticated: false,
-		});
+	try {
+		if (req.session.user) {
+			res.send({
+				isAuthenticated: true,
+				id: req.session.user[0].id,
+				userName: req.session.user[0].userName,
+			});
+		} else {
+			res.send({
+				isAuthenticated: false,
+			});
+		}
+	} catch (error) {
+		console.log(error);
 	}
 };
 

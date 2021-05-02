@@ -1,19 +1,24 @@
-.Listcontaier {
+.jobList {
 	text-decoration: none;
 	margin-top: 50px;
-	padding: 50px;
+	padding: 3em;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
 	width: 100%;
-	align-items: flex-start;
+	align-items: center;
 }
 
-.Listcontaier #listContaier h3,
-p {
-	color: black;
+.jobList h3 {
+	color: #34b6b4;
 	text-decoration: none;
 }
-#listContainer {
-	margin-bottom: 10px;
+.jobList .singleJob {
+	padding: 1em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+
+	box-shadow: 1px 5px 5px 4px #f3f3f3;
+	border-radius: 5px;
+	width: 60vw;
 }
