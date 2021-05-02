@@ -1,10 +1,8 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "engines": {
-    "npm": "6.14.9",
-    "node": "12.16.3"
-  },
+  "start" : "node index.js",
+  
   "description": "JobPortal",
   "main": "Index.js",
   "scripts": {
