@@ -30,6 +30,6 @@ app.use(
 app.use('/jobSeeker', job_Seeker_Routes);
 app.use('/jobs', job_Routes);
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
 	console.log('App is Running on port 3001');
 });
