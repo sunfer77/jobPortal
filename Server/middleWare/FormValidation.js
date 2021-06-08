@@ -6,6 +6,7 @@ const schema = yup.object().shape({
 	password: yup.string().required().min(8),
 });
 
+// validation midleware
 const form_validation = () => async (req, res, next) => {
 	try {
 		await schema.validate(req.body);

@@ -10,10 +10,14 @@ function CreateCVProvider({ children }) {
 
 	const submitForm = (data) => {
 		axios
-			.post('http://localhost:3001/jobSeeker/createCV', {
+			.post('https://job-app-react.herokuapp.com/jobSeeker/createCV', {
 				...data,
 				id: userData.id,
 			})
+			// .post('http://localhost:3001/jobSeeker/createCV', {
+			// 	...data,
+			// 	id: userData.id,
+			// })
 			.then((response) => {
 				setCvCreated(response.data);
 			});

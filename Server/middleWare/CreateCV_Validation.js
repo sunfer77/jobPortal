@@ -16,6 +16,7 @@ const schema = yup.object().shape({
 	aboutMe: yup.string().required().min(40),
 });
 
+// validation midleware
 const CV_validation = () => async (req, res, next) => {
 	try {
 		await schema.validate(req.body);

@@ -12,7 +12,8 @@ function JobSearchProvider(props) {
 
 	const findJobs = async (data) => {
 		await axios
-			.post('http://localhost:3001/jobs/jobSearch', data)
+			//.post('http://localhost:3001/jobs/jobSearch', data)
+			.post('https://job-app-react.herokuapp.com/jobs/jobSearch', data)
 			.then((response) => {
 				setIsLoading(true);
 				setjobList(response.data);

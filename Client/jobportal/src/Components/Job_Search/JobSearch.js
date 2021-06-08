@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { userContext } from './JobSearchProvider';
+import '../About/About';
 import * as yup from 'yup';
-import About from '../About_Component/About';
 
 import './JobSearch.css';
+import About from '../About/About';
 
 function JobSearch() {
 	const { findJobs, fireRedirect } = useContext(userContext);
@@ -22,13 +23,15 @@ function JobSearch() {
 	});
 	return (
 		<>
-			<section className='main'>
-				<div className='content'>
-					<h2>We help you find your Dream Job!</h2>
+			<div className='content'>
+				<div>
+					<h3>We help you find your Dream Job!</h3>
 					<h3>
-						Introducing video job descriptions. Only at Monster. Get insights
-						into real jobs with video job descriptions from hiring managers.
+						Only at Monster. Get insights into real jobs with video job
+						descriptions from hiring managers.
 					</h3>
+				</div>
+				<div>
 					<form>
 						<input
 							type='text'
@@ -43,22 +46,23 @@ function JobSearch() {
 						{errors.city?.type === 'required' && <p>required</p>}
 						{errors.city?.type === 'min' && <p> minLength is 2 </p>}
 					</form>
-
-					<div>
-						<button className='btn' onClick={handleSubmit(findJobs)}>
-							Search
-						</button>
-						{fireRedirect && (
-							<Redirect
-								to={{
-									pathname: '/ListOfJobs',
-								}}
-							/>
-						)}
-					</div>
 				</div>
-			</section>
-			<About />
+				<div>
+					<button className='btn' onClick={handleSubmit(findJobs)}>
+						Search
+					</button>
+					{fireRedirect && (
+						<Redirect
+							to={{
+								pathname: '/ListOfJobs',
+							}}
+						/>
+					)}
+				</div>
+			</div>
+			<div>
+				<About />
+			</div>
 		</>
 	);
 }

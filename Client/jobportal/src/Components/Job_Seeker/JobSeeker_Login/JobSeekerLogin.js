@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -27,7 +27,12 @@ function JobSeekerLogin() {
 	return (
 		<div className='form-container'>
 			<form className='form' onSubmit={handleSubmit(submitForm)}>
-				<h1>Login</h1>
+				<div className='login'>
+					<h2>
+						<i className='fas fa-sign-in-alt'></i>Login
+					</h2>
+				</div>
+
 				<input name='userName' ref={register} placeholder='user name*' />
 				{errors.userName?.type === 'required' && <span>Required!</span>}
 				{errors.userName?.type === 'min' && <span>too short</span>}
@@ -45,6 +50,10 @@ function JobSeekerLogin() {
 				{errors.password?.type === 'min' && <span>too short</span>}
 				<input id='submit' type='submit' />
 				<span>{userData.message}</span>
+
+				<Link to='/JobSeekerSignup'>
+					<p>Stil don't have a account?</p>
+				</Link>
 			</form>
 
 			{/* Redirect User to the Homepage after logged in */}

@@ -8,4 +8,7 @@ router.post('/jobSearch', jobsController.job_search_controller);
 // get a single job by id
 router.get('/:id', jobsController.jobs_by_id);
 
+// get jobs by company  ame
+router.get('/company/:id', jobsController.jobs_by_companyID);
+
 module.exports = router;

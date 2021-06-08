@@ -10,10 +10,10 @@ function FinalizedUserCV() {
 	try {
 		useEffect(() => {
 			axios
-				.get(`http://localhost:3001/jobSeeker/${userData.id}`)
+				// .get(`http://localhost:3001/jobSeeker/${userData.id}`)
+				.get(`https://job-app-react.herokuapp.com/jobSeeker/${userData.id}`)
 				.then((response) => {
 					setJobSeekerData(response.data);
-					console.log(response.data);
 				})
 				.catch((error) => {
 					console.log(error);
@@ -30,6 +30,10 @@ function FinalizedUserCV() {
 					{JobSeekerData.firstName} {JobSeekerData.lasttName}
 				</p>
 				<p>
+					<span>Surname - </span>
+					{JobSeekerData.lastName} {JobSeekerData.lasttName}
+				</p>
+				<p>
 					<span>City - </span>
 					{JobSeekerData.city}
 				</p>
@@ -40,12 +44,28 @@ function FinalizedUserCV() {
 				<div className='aboutMe'>
 					<p>{JobSeekerData.aboutMe}</p>
 				</div>
-
-				<Link style={{ textDecoration: 'none' }} to='/JobSeekerEditProfile'>
-					<p>
-						<i className='far fa-edit'></i> Edit Your CV
-					</p>
-				</Link>
+				<Link
+					style={{ textDecoration: 'none' }}
+					to='/JobSeekerEditProfile'></Link>
+				<p>
+					<span>
+						<i className='fas fa-newspaper'></i>
+					</span>
+					My Work
+				</p>
+				<p>
+					<span>
+						<i class='fab fa-github'></i>
+					</span>
+					GitHub
+				</p>
+				<div className='editCV'>
+					<Link style={{ textDecoration: 'none' }} to='/JobSeekerEditProfile'>
+						<p>
+							<i className='far fa-edit'></i> Edit Your CV
+						</p>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

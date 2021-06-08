@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './SingleJobView.css';
-
 function SingleJobView() {
 	const { id } = useParams();
 	let [job, setJob] = useState({});
@@ -10,7 +10,8 @@ function SingleJobView() {
 	try {
 		useEffect(() => {
 			axios
-				.get(`http://localhost:3001/jobs/${id}`)
+				//.get(`http://localhost:3001/jobs/${id}`)
+				.get(`https://job-app-react.herokuapp.com/jobs/${id}`)
 				.then((response) => {
 					setJob(response.data[0]);
 				})
@@ -24,13 +25,24 @@ function SingleJobView() {
 
 	return (
 		<div className='job'>
+			<div className='job-name'>
+				<h2>{job.jobName}</h2>
+			</div>
+
 			<div className='job-description'>
-				<h3>{job.jobName}</h3>
 				<p>{job.companyName}</p>
 				<p>{job.city}</p>
+				<p>{job.contractType}</p>
 			</div>
 			<p className='description'>{job.jobDescription}</p>
-			<h4>Please send your CV to {job.email}</h4>
+			<p>Please send your CV to {job.email}</p>
+			<div className='more-jobs'>
+				<Link
+					style={{ textDecoration: 'none' }}
+					to={`/company/${job.companyId}`}>
+					<p> More Jobs from {job.companyName}</p>
+				</Link>
+			</div>
 		</div>
 	);
 }

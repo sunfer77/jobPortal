@@ -9,7 +9,7 @@ import '../form.css';
 
 function CreateCV() {
 	const { submitForm, cvCreated } = useContext(CvContext);
-	// * Yup Form starts here
+	// Yup validation
 	const schema = yup.object().shape({
 		firstName: yup
 			.string()

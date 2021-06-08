@@ -11,7 +11,8 @@ function JobseekerSignUp() {
 
 	const submitForm = (data) => {
 		axios
-			.post('http://localhost:3001/jobSeeker/sign_up', data)
+			//.post('http://localhost:3001/jobSeeker/sign_up', data)
+			.post('https://job-app-react.herokuapp.com/jobSeeker/sign_up', data)
 			.then((response) => {
 				console.log(response.data);
 				setsignUpData(response.data);
@@ -37,7 +38,11 @@ function JobseekerSignUp() {
 	return (
 		<div className='form-container'>
 			<form className='form' onSubmit={handleSubmit(submitForm)}>
-				<h1>Sign Up </h1>
+				<div className='form-signup'>
+					<h2>
+						<i class='fas fa-sign-in-alt'></i>Sign up
+					</h2>
+				</div>
 
 				<input name='userName' ref={register} placeholder='user name*' />
 				{errors.userName?.type === 'required' && <span>Required!</span>}
@@ -63,7 +68,7 @@ function JobseekerSignUp() {
 				<input id='submit' type='submit' />
 				<span>{signUpData.message}</span>
 			</form>
-
+			{/* Redirect User after register */}
 			{signUpData.isRegistered && (
 				<Redirect
 					to={{

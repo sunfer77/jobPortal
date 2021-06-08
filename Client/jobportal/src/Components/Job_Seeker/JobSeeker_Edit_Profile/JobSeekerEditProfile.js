@@ -17,7 +17,8 @@ function JobSeekerEditProfile() {
 	try {
 		useEffect(() => {
 			axios
-				.get(`http://localhost:3001/jobSeeker/${userData.id}`)
+				.get(`https://job-app-react.herokuapp.com/jobSeeker/${userData.id}`)
+				//.get(`http://localhost:3001/jobSeeker/${userData.id}`)
 				.then((response) => {
 					setJobSeekerData(response.data);
 				})
@@ -32,13 +33,16 @@ function JobSeekerEditProfile() {
 	// Submit updated user data to the database
 	const submitForm = (data) => {
 		axios
-			.put('http://localhost:3001/jobSeeker/updateCV', {
+			// .put('http://localhost:3001/jobSeeker/updateCV', {
+			// 	...data,
+			// 	id: userData.id,
+			// })
+			.put('https://jobsite-app.herokuapp.com/jobSeeker/updateCV', {
 				...data,
 				id: userData.id,
 			})
 			.then((response) => {
 				setMessage(response.data);
-				console.log(message);
 			})
 			.catch((error) => {
 				console.log(error);

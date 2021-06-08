@@ -1,23 +1,25 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "start" : "node index.js",
-  
   "description": "JobPortal",
   "main": "Index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Index.js"
   },
   "author": "SunethFernando",
   "license": "ISC",
+  "engines": {
+    "node": "12.16.3"
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
-    "express-mysql-session": "^2.1.5",
+    "express-mysql-session": "^2.1.6",
     "express-session": "^1.17.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7",

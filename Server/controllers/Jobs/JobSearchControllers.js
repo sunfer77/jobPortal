@@ -33,7 +33,7 @@ const job_search_controller = (req, res) => {
 	});
 };
 
-// get selected job by id
+// get jobs by jobId
 const jobs_by_id = (req, res) => {
 	const { id } = req.params;
 
@@ -46,6 +46,7 @@ const jobs_by_id = (req, res) => {
 	jobs.city, 
 	jobs.jobDescription, 
 	company.companyName, 
+	company.companyId,
 	company.email 
 	FROM jobs 
 	JOIN company ON company.companyId = jobs.companyId 
@@ -64,7 +65,26 @@ const jobs_by_id = (req, res) => {
 	});
 };
 
+// get jobs by companyId
+
+const jobs_by_companyID = (req, res) => {
+	const { id } = req.params;
+	const jobsByCompany = `SELECT * FROM jobs WHERE companyId = '${id}' ;`;
+	try {
+		db.query(jobsByCompany, (err, result) => {
+			if (err) {
+				console.log(err);
+			} else {
+				res.send(result);
+			}
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 module.exports = {
 	job_search_controller,
 	jobs_by_id,
+	jobs_by_companyID,
 };

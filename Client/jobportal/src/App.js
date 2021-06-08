@@ -6,7 +6,6 @@ import JobSearchProvider from './Components/Job_Search/JobSearchProvider';
 import JobSearch from './Components/Job_Search/JobSearch';
 import NavBar from './Components/NavBar_Component/NavBar';
 import SingleJobView from './Components/Jobs_View/Single_Job_View/SingleJobView';
-import About from './Components/About_Component/About';
 import ListOfJobs from './Components/Jobs_View/List_Of_Jobs/ListOfJobs';
 import JobSeekerSignup from './Components/Job_Seeker/JobSeeker_SignUp/JobSeekerSignup';
 import UserContext from './Components/Job_Seeker/JobSeeker_Login/UserContext';
@@ -17,6 +16,7 @@ import JobSeekerLogin from './Components/Job_Seeker/JobSeeker_Login/JobSeekerLog
 import ProtectedRoutes from './Components/ProtectedRoutes';
 import ProfilePage from './Components/Job_Seeker/ProfilePage.js/ProfilePage';
 import FinalizedUserCV from './Components/Job_Seeker/CV/FinalizedUserCV';
+import CompanyProfilePage from './Components/Company/CompanyProfilePage';
 
 function App() {
 	return (
@@ -28,7 +28,6 @@ function App() {
 							<NavBar />
 							<Switch>
 								<Route exact path='/' component={JobSearch} />
-								<Route exact path='/About' component={About} />
 								<Route exact path='/ListOfJobs' component={ListOfJobs} />
 								<Route exact path='/job/:id' component={SingleJobView} />
 								<Route
@@ -40,6 +39,11 @@ function App() {
 									exact
 									path='/JobSeekerLogin'
 									component={JobSeekerLogin}
+								/>
+								<Route
+									exact
+									path='/company/:id'
+									component={CompanyProfilePage}
 								/>
 								<ProtectedRoutes
 									exact

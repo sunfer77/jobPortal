@@ -8,6 +8,22 @@ function ProfilePage() {
 	const { userData } = useContext(CandidateContext);
 	const [isCvCreated, setIsCvCreated] = useState([]);
 
+	const logout = () => {
+		try {
+			axios
+				//.get('http://localhost:3001/jobSeeker/logout')
+				.get('https://job-app-react.herokuapp.com/jobSeeker/logout')
+				.then(() => {
+					window.location.assign('/');
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	// *  "isCvCreated.CvCreated" used to prevent showing "Edit Your CV" to newly registered users that they have not created a CV yet!
 	// *   and also used to show "Edit Your CV" to the users those have already created the CV.
 
@@ -15,7 +31,8 @@ function ProfilePage() {
 		useEffect(() => {
 			userData.isAuthenticated &&
 				axios
-					.get(`http://localhost:3001/jobSeeker/${userData.id}`)
+					//.get(`http://localhost:3001/jobSeeker/${userData.id}`)
+					.get(`https://job-app-react.herokuapp.com/jobSeeker/${userData.id}`)
 					.then((response) => {
 						setIsCvCreated(response.data);
 					})
@@ -30,6 +47,14 @@ function ProfilePage() {
 	return (
 		<div className='mainDiv'>
 			<div className='profile'>
+				{userData.isAuthenticated && (
+					<div id='user'>
+						<p>
+							<span>Hello! {userData.userName}</span>
+						</p>
+					</div>
+				)}
+
 				{userData.isAuthenticated && !isCvCreated.CvCreated ? (
 					<div className='actionDiv'>
 						<Link style={{ textDecoration: 'none' }} to='/CreateCV'>
@@ -67,6 +92,15 @@ function ProfilePage() {
 								<i className='far fa-trash-alt'></i> Delete my account
 							</p>
 						</Link>
+					</div>
+				) : null}
+
+				{userData.isAuthenticated ? (
+					<div className='actionDiv'>
+						<p onClick={logout}>
+							<i style={{ color: 'red' }} class='fas fa-sign-out-alt'></i>
+							Logout
+						</p>
 					</div>
 				) : null}
 			</div>

@@ -1,7 +1,6 @@
 .main_div {
 	display: flex;
-	margin-top: 50px;
-	padding: 100px;
+	margin-top: 100px;
 	justify-content: center;
 }
 .cv {
@@ -13,6 +12,7 @@
 
 span {
 	color: #34b6b4;
+	margin-left: 0.25em;
 }
 .aboutMe {
 	white-space: pre-wrap;
@@ -20,4 +20,17 @@ span {
 	margin-bottom: 0.9em;
 	border-top: solid 0.5px darkgrey;
 	padding-top: 0.9em;
+}
+.editCV {
+	display: flex;
+	justify-content: flex-end;
+}
+.cv i {
+	margin: 0.6em;
+}
+@media only screen and (max-width: 600px) {
+	.cv {
+		width: 90vw;
+		padding: 1em;
+	}
 }

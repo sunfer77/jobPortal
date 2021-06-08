@@ -1,0 +1,29 @@
+.main-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	flex-wrap: wrap;
+}
+.div-one {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	padding: 3.5em;
+	height: 200px;
+}
+.div-one i {
+	color: #28aa41;
+	font-size: 3em;
+}
+.div-one h4 {
+	color: #20262e;
+	font-size: 1em;
+}
+@media only screen and (max-width: 600px) {
+	.div-one {
+		width: 50%;
+		align-items: center;
+	}
+}
