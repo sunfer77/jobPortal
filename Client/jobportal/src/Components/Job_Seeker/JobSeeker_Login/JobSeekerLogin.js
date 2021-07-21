@@ -1,71 +1,99 @@
-import React, { useContext } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { CandidateContext } from './UserContext';
-import '../form.css';
+import React, { useContext } from "react";
+import { Redirect, Link } from "react-router-dom";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import GoogleLogin from "react-google-login";
+import { CandidateContext } from "./UserContext";
+import "../form.css";
 
 function JobSeekerLogin() {
-	const { submitForm, userData } = useContext(CandidateContext);
+  const { submitForm, responseGoogle, userData, authentcating } =
+    useContext(CandidateContext);
 
-	const schema = yup.object().shape({
-		userName: yup
-			.string()
-			.required()
-			.matches(/^[A-Za-z\s]+$/, 'Invalid format'),
-		password: yup.string().required(),
-	});
+  // ------------ Yup Form starts here --------------
 
-	const { register, handleSubmit, errors } = useForm({
-		mode: 'onTouched',
-		resolver: yupResolver(schema),
-	});
+  const schema = yup.object().shape({
+    userName: yup
+      .string()
+      .required()
+      .matches(/^[A-Za-z\s]+$/, "Invalid format"),
+    password: yup.string().required(),
+  });
 
-	// * Yup Form ends here
+  const { register, handleSubmit, errors } = useForm({
+    mode: "onTouched",
+    resolver: yupResolver(schema),
+  });
 
-	return (
-		<div className='form-container'>
-			<form className='form' onSubmit={handleSubmit(submitForm)}>
-				<div className='login'>
-					<h2>
-						<i className='fas fa-sign-in-alt'></i>Login
-					</h2>
-				</div>
+  // ------------ Yup Form ends here --------------
 
-				<input name='userName' ref={register} placeholder='user name*' />
-				{errors.userName?.type === 'required' && <span>Required!</span>}
-				{errors.userName?.type === 'min' && <span>too short</span>}
-				{errors.userName?.type === 'matches' && <span>invalid format</span>}
+  return (
+    <div className="form-container">
+      <form className="form" onSubmit={handleSubmit(submitForm)}>
+        <div className="login">
+          <h2>
+            <i className="fas fa-sign-in-alt"></i>Login
+          </h2>
+        </div>
 
-				{/* +++++++++ City +++++++++++++++++++++++++++++++++++++++++++++ */}
+        <input name="userName" ref={register} placeholder="user name*" />
+        {errors.userName?.type === "required" && <span>Required!</span>}
+        {errors.userName?.type === "min" && <span>too short</span>}
+        {errors.userName?.type === "matches" && <span>invalid format</span>}
 
-				<input
-					type='password'
-					name='password'
-					ref={register}
-					placeholder='password *'
-				/>
-				{errors.password?.type === 'required' && <span>Required!</span>}
-				{errors.password?.type === 'min' && <span>too short</span>}
-				<input id='submit' type='submit' />
-				<span>{userData.message}</span>
+        {/* +++++++++ City +++++++++++++++++++++++++++++++++++++++++++++ */}
 
-				<Link to='/JobSeekerSignup'>
-					<p>Stil don't have a account?</p>
-				</Link>
-			</form>
+        <input
+          type="password"
+          name="password"
+          ref={register}
+          placeholder="password *"
+        />
+        {errors.password?.type === "required" && <span>Required!</span>}
+        {errors.password?.type === "min" && <span>too short</span>}
 
-			{/* Redirect User to the Homepage after logged in */}
-			{userData.isAuthenticated && (
-				<Redirect
-					to={{
-						pathname: '/',
-					}}
-				/>
-			)}
-		</div>
-	);
+        <input id="submit" type="submit" />
+      </form>
+      <div>
+        <p>Or</p>
+      </div>
+
+      {/*---------------------------------------------- */}
+      {/* ----------- Login with Google ----------------*/}
+      {/*---------------------------------------------- */}
+
+      <div className="google">
+        <GoogleLogin
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+          buttonText="Login with Google"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
+      </div>
+
+      {/*---------------------------------------------- */}
+
+      <Link to="/JobSeekerSignup">
+        <p>Stil don't have a account?</p>
+      </Link>
+      {authentcating && <p>Authenticating.... please wait!</p>}
+      <span>{userData.message}</span>
+
+      {/*---------------------------------------------- */}
+      {/* Redirect User to the ProfilePage after logged in */}
+      {/* --------------------------------------------- */}
+
+      {userData.isAuthenticated && (
+        <Redirect
+          to={{
+            pathname: "/ProfilePage",
+          }}
+        />
+      )}
+    </div>
+  );
 }
 
 export default JobSeekerLogin;

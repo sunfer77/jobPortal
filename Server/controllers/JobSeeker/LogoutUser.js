@@ -1,6 +1,6 @@
 const logOut = (req, res) => {
-	req.session.destroy();
-	res.send('loged out');
+  req.session.destroy();
+  res.send("logged out");
 };
 
 module.exports = logOut;

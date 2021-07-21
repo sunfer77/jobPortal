@@ -1,70 +1,94 @@
 .form-container {
-	display: flex;
-	flex-direction: column;
-	margin-top: 50px;
-	padding: 70px;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  padding: 70px;
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
-	display: flex;
-	flex-direction: column;
-	width: 55%;
-	font-family: Poppins;
+  display: flex;
+  flex-direction: column;
+
+  width: 55%;
+  font-family: Poppins;
 }
 .form span {
-	color: mediumvioletred;
+  color: mediumvioletred;
 }
 .form input {
-	height: 2.9em;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	padding: 15px;
-	font-family: Poppins;
+  height: 2.9em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 10px;
+  font-family: Poppins;
 }
 
 .form h2 {
-	color: #34b6b4;
+  color: #34b6b4;
 }
 #submit {
-	background-color: #34b6b4;
-	color: white;
-	border: none;
+  background-color: #34b6b4;
+  color: white;
+  border: none;
 }
 .login {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .login i {
-	margin-right: 0.5em;
-	color: #230a38;
+  margin-right: 0.5em;
+  color: #230a38;
 }
 .form-signup {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .form-signup i {
-	margin-right: 0.5em;
-	color: #230a38;
+  margin-right: 0.5em;
+  color: #230a38;
 }
 .form textarea {
-	resize: none;
-	padding: 15px 15px;
-	font-family: Poppins;
-	border-radius: 5px;
-	border: 1px solid #cccccc;
-	overflow: hidden;
+  resize: none;
+  padding: 15px 15px;
+  font-family: Poppins;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+  overflow: hidden;
 }
 .form Link {
-	text-decoration: none;
+  text-decoration: none;
 }
+
+.google {
+  background-color: white;
+  height: 2.5em;
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+  font-family: Poppins;
+  padding: 0.3em;
+}
+.google span {
+  color: black;
+}
+
 @media only screen and (max-width: 600px) {
-	.form {
-		width: 100%;
-	}
-	.form input {
-		margin-top: 1.5em;
-		margin-bottom: 1.5em;
-	}
+  .form {
+    width: 90vw;
+  }
+  .form input {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+}
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+  .form {
+    width: 90vw;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1279px) {
+  .form {
+    width: 60vw;
+  }
 }

@@ -12,7 +12,7 @@ function ProtectedRoutes({ component: Component, ...rest }) {
 				if (userData.isAuthenticated) {
 					return <Component {...props} />;
 				} else {
-					return (
+					     return (
 						<Redirect
 							to={{
 								pathname: '/JobSeekerLogin',
@@ -26,3 +26,6 @@ function ProtectedRoutes({ component: Component, ...rest }) {
 	);
 }
 export default ProtectedRoutes;
+
+
+

@@ -1,34 +1,82 @@
 .jobList {
-	text-decoration: none;
-	margin-top: 50px;
-	padding-top: 4em;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	width: 100%;
-	align-items: center;
+  text-decoration: none;
+  margin-top: 50px;
+  padding-top: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
 }
 
-.jobList p {
-	color: #34b6b4;
-	text-decoration: none;
-}
 .singleJob {
-	padding-left: 1.5em;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	/* box-shadow: 1px 5px 5px 4px #f3f3f3;
+  padding-left: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  /* box-shadow: 1px 5px 5px 4px #f3f3f3;
 	border-radius: 5px; */
-	width: 60vw;
-	border-left: 3px solid #f7aa63;
-	padding-left: 10px;
+  width: 60vw;
+  border-left: 3px solid #f7aa63;
 }
 .singleJob h3 {
-	margin-bottom: 0.1em;
+  margin-bottom: 0.1em;
+}
+.singleJob p {
+  color: #28aa41;
 }
 
-@media only screen and (max-width: 600px) {
-	.jobList .singleJob {
-		width: 90vw;
-	}
+.pagination-container {
+  margin-top: 2em;
+}
+.pagination-none {
+  display: none;
+}
+
+.paginationBttns {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBttns a {
+  padding: 5px 10px;
+  margin: 0.2em;
+  border-radius: 5px;
+  border: 1px solid #f7aa63;
+  cursor: pointer;
+}
+
+.paginationBttns a:hover {
+  background-color: #f7aa63;
+}
+
+.paginationActive a {
+  background-color: #f7aa63;
+}
+.paginationDisabled a {
+  display: none;
+}
+.paginationDisabled a:hover {
+  background-color: #fff;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+  .singleJob {
+    width: 90vw;
+    margin-left: 5em;
+  }
+  .jobList {
+    text-decoration: none;
+    margin-top: 50px;
+    padding-top: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    padding-left: 5em;
+    padding-right: 5em;
+  }
 }
