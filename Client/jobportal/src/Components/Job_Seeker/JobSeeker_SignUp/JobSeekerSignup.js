@@ -10,15 +10,20 @@ function JobseekerSignUp() {
   const [signUpData, setsignUpData] = useState([]);
 
   const submitForm = (data) => {
-    axios
-      //.post("http://localhost:3001/jobSeeker/sign_up", data)
-      .post("https://job-app-react.herokuapp.com/jobSeeker/sign_up", data)
-      .then((response) => {
-        setsignUpData(response.data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    try {
+      axios
+        //.post("http://localhost:3001/jobSeeker/sign_up", data)
+        .post("https://job-app-react.herokuapp.com/jobSeeker/sign_up", data)
+        .then((response) => {
+          setsignUpData(response.data);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+    
   };
 
   const schema = yup.object().shape({

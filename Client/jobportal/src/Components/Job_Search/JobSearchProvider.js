@@ -16,17 +16,22 @@ function JobSearchProvider(props) {
 
   const findJobs = async (data) => {
     setIsLoading(true);
-    await axios
-      // .post("http://localhost:3001/jobs/jobSearch", data)
-      .post("https://job-app-react.herokuapp.com/jobs/jobSearch", data)
-      .then((response) => {
-        setjobList(response.data);
-        setfireRedirect(true);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    try {
+      await axios
+        // .post("http://localhost:3001/jobs/jobSearch", data)
+        .post("https://job-app-react.herokuapp.com/jobs/jobSearch", data)
+        .then((response) => {
+          setjobList(response.data);
+          setfireRedirect(true);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+   
   };
 
   return (

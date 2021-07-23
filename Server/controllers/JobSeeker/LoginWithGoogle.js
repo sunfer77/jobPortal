@@ -3,9 +3,11 @@ const db = require("../../db");
 const googleAuth = async (req, res) => {
   const { userName, googleID, email } = req.body;
 
+  // get user data if user exists
   const getUser = `SELECT * FROM UserRegistration
                    WHERE userName = ? AND googleID = ?;`;
 
+  // Create user if not exists
   const createUser = `INSERT INTO UserRegistration
                       (userName,email,googleID)
                       VALUES (?,?,?);`;
@@ -15,6 +17,7 @@ const googleAuth = async (req, res) => {
       if (err) {
         console.log(err);
       }
+      // get user data
       if (result.length > 0) {
         req.session.user = result;
         res.send({
@@ -23,6 +26,7 @@ const googleAuth = async (req, res) => {
           id: req.session.user[0].id,
         });
       } else {
+        // create user
         db.query(createUser, [userName, email, googleID], (err, user) => {
           if (err) {
             console.log(err);

@@ -45,43 +45,48 @@ function UserContext({ children }) {
   // -------------------------------------------------------------------------
   const submitForm = (data) => {
     setAuthenticating(true);
-    axios
-      //.post("http://localhost:3001/jobSeeker/login", data)
-      .post("https://job-app-react.herokuapp.com/jobSeeker/login", data)
-      .then((response) => {
-        setUserData(response.data);
-        console.log(response.data);
-        setAuthenticating(false);
-      })
-
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      axios
+        //.post("http://localhost:3001/jobSeeker/login", data)
+        .post("https://job-app-react.herokuapp.com/jobSeeker/login", data)
+        .then((response) => {
+          setUserData(response.data);
+          setAuthenticating(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
   // -------------------------------------------------------------------------
   // Googole login
   // -------------------------------------------------------------------------
+
   const responseGoogle = (googleData) => {
+    setAuthenticating(true);
     axios
-      // .post("http://localhost:3001/jobSeeker/loginWithGoogle", {
-      //   userName: googleData.Ys.Ve,
-      //   googleID: googleData.Ys.xS,
-      //   email: googleData.Ys.It,
+      // .post("http://localhost:8001/jobSeeker/loginWithGoogle", {
+      //   userName: googleData.profileObj.name,
+      //   googleID: googleData.profileObj.googleId,
+      //   email: googleData.profileObj.email,
       // })
       .post("https://job-app-react.herokuapp.com/jobSeeker/loginWithGoogle", {
-        userName: googleData.Ys.Ve,
-        googleID: googleData.Ys.xS,
-        email: googleData.Ys.It,
+        userName: googleData.profileObj.name,
+        googleID: googleData.profileObj.googleId,
+        email: googleData.profileObj.email,
       })
       .then((response) => {
         setUserData(response.data);
-
-        console.log(response.data);
+        setAuthenticating(false);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((err) => {
+        console.log(err);
+        setAuthenticating(false);
       });
   };
+
   return (
     <CandidateContext.Provider
       value={{ submitForm, responseGoogle, userData, authentcating }}

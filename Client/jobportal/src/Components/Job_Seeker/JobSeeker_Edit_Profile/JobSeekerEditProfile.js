@@ -51,21 +51,26 @@ function JobSeekerEditProfile() {
   // -------------------------------------------------------------
 
   const submitForm = (data) => {
-    axios
-      // .put("http://localhost:3001/jobSeeker/updateCV", {
-      //   ...data,
-      //   id: userData.id,
-      // })
-      .put("https://job-app-react.herokuapp.com/jobSeeker/updateCV", {
-        ...data,
-        id: userData.id,
-      })
-      .then((response) => {
-        setMessage(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      axios
+        // .put("http://localhost:3001/jobSeeker/updateCV", {
+        //   ...data,
+        //   id: userData.id,
+        // })
+        .put("https://job-app-react.herokuapp.com/jobSeeker/updateCV", {
+          ...data,
+          id: userData.id,
+        })
+        .then((response) => {
+          setMessage(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+    
   };
 
   // * Yup Form starts here

@@ -7,16 +7,16 @@ const cors = require("cors");
 const job_Seeker_Routes = require("./Routes/Job_Seeker/jobSeekerRoutes");
 const job_Routes = require("./Routes/Jobs/JobsRoutes");
 const company_Routes = require("./Routes/Company/CompanyRoutes");
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || 3001;
 
 //Remove or comment out cors() before deploy to heroku
-app.use(
-  cors({
-    origin: [`http://localhost:8001`],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: [`http://localhost:3000`],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
 app.use(
   session({
     key: "_session",

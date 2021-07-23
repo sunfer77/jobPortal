@@ -21,6 +21,7 @@ const job_Seeker_login = (req, res) => {
           if (response) {
             // -------------------------------------------
             // assign user data to req.session.user object
+            // and send to frontend
             // ------------------------------------------
             req.session.user = result;
             res.send({

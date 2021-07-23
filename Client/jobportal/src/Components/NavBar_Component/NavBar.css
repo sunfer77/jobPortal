@@ -16,7 +16,7 @@ header {
 header .logo {
   
   font-weight: 700;
-  font-size: 2em;
+  font-size: 1.7em;
   text-decoration: none;
   margin-left: 0.7em;
 }
@@ -27,14 +27,14 @@ header .logo h2 {
 
 header .logo-2 {
   display:none;
-  font-weight: 400;
-  font-size: 1.5em;
+  font-weight:700;
+  font-size: 2em;
   text-decoration: none;
   margin-left: 0.5em;
 }
 
 header .logo-2 h2 {
-  color: #28aa41;
+  color: #fd9432;
 }
 header .navigation {
   display: flex;
@@ -75,6 +75,6 @@ i {
     display: none;
   }
   header .logo-2{
-    display: block;
+  display: block;
   }
 }
